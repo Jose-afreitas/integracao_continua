@@ -1,6 +1,6 @@
 name: ci-golang-workflow
 #on: [push]
-on:
+on: 
   pull_request:
     branches:
       - develop
