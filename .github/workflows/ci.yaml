@@ -4,22 +4,19 @@ on:
   pull_request:
     branches:
       - develop
-      
-strategy:
-    matrix: 
-      go: ['1,14','1,15']
 
 jobs:
- check-application:
-  runs-on: ubuntu-latest
-  
-
-  steps:
-  #https://github.com/actions/checkout
-  #https://github.com/actions/setup-go
-  - uses: actions/checkout@v2
-  - uses: actions/setup-go@v2
-    with:
-      go-version: ${{ matrix.go }}
-  - run: go test
-  - run: go run math.go
+  check-application:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: ["1,14", "1,15"]
+    steps:
+      #https://github.com/actions/checkout
+      #https://github.com/actions/setup-go
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+      - run: go test
+      - run: go run math.go
